@@ -111,5 +111,25 @@ namespace SportoloDolgozat.Controllers
             return new { message = "Sikeres felvétel", result = addNewSportolo };
         }
 
+        [HttpDelete]
+        public object DeleteSportolo(int id)
+        {
+            var connection = new MySqlConnection(ConnectionString);
+
+            connection.Open();
+
+            string sql = @"DELETE FROM `eredmeny` WHERE `Id` = @id";
+
+            var cmd = new MySqlCommand(sql, connection);
+
+            cmd.Parameters.AddWithValue("@id", id);
+
+            cmd.ExecuteNonQuery();
+
+            connection.Close();
+
+            return new { message = "Sikeres törlés", result = "" };
+        } 
+
     }
 }

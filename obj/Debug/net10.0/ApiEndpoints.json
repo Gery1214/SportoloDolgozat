@@ -37,6 +37,22 @@
   },
   {
     "ContainingType": "SportoloDolgozat.Controllers.EredmenyController",
+    "Method": "DeleteSportolo",
+    "RelativePath": "api/Eredmeny",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "SportoloDolgozat.Controllers.EredmenyController",
     "Method": "GetEredmenyById",
     "RelativePath": "api/Eredmeny/ByID",
     "HttpMethod": "GET",
