@@ -2,12 +2,12 @@
 {
     public class Eredmeny
     {
-        public int id { get; set; }
-        public string competition { get; set; }
-        public string description { get; set; }
-        public DateTime resultTime { get; set; }
-        public DateTime updateTime { get; set; }
-        public int sportoloId { get; set; }
+        public int Id { get; set; }
+        public string? Competition { get; set; }
+        public string? Description { get; set; }
+        public DateTime ResultTime { get; set; }
+        public DateTime UpdateTime { get; set; }
+        public int SportoloId { get; set; }
 
 
     }
