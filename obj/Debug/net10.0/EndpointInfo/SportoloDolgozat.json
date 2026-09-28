@@ -49,6 +49,36 @@
             }
           }
         }
+      },
+      "post": {
+        "tags": [
+          "Eredmeny"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EredmenyPost"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EredmenyPost"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/EredmenyPost"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
       }
     },
     "/api/Eredmeny/ByID": {
@@ -118,6 +148,23 @@
               "string"
             ],
             "format": "int32"
+          }
+        }
+      },
+      "EredmenyPost": {
+        "type": "object",
+        "properties": {
+          "competition": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "description": {
+            "type": [
+              "null",
+              "string"
+            ]
           }
         }
       }

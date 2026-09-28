@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using MySqlConnector;
 using SportoloDolgozat.Models;
+using SportoloDolgozat.Models.DTOs;
 
 namespace SportoloDolgozat.Controllers
 {
@@ -84,7 +85,31 @@ namespace SportoloDolgozat.Controllers
             connection.Close();
 
             return data;
-
         }
+
+
+        [HttpPost]
+        public object AddNewSportolo([FromBody] EredmenyPost addNewSportolo)
+        {
+            var connection = new MySqlConnection(ConnectionString);
+
+            connection.Open();
+
+            string sql = @"INSERT INTO `eredmeny`(`Competition`,`Description`,`ResultTime`,`UpdateTime`) VALUES (@Competition,@Description,@ResultTime,@UpdateTime)";
+
+            var cmd = new MySqlCommand(sql, connection);
+
+            cmd.Parameters.AddWithValue("@Competition", addNewSportolo.Competition);
+            cmd.Parameters.AddWithValue("@Description", addNewSportolo.Description);
+            cmd.Parameters.AddWithValue("@ResultTime", DateTime.Now);
+            cmd.Parameters.AddWithValue("@UpdateTime", DateTime.Now);
+
+            cmd.ExecuteNonQuery();
+
+            connection.Close();
+
+            return new { message = "Sikeres felvétel", result = addNewSportolo };
+        }
+
     }
 }
