@@ -200,6 +200,27 @@
           }
         }
       }
+    },
+    "/api/Eredmeny/BySportoloName": {
+      "get": {
+        "tags": [
+          "Eredmeny"
+        ],
+        "parameters": [
+          {
+            "name": "name",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
     }
   },
   "components": {

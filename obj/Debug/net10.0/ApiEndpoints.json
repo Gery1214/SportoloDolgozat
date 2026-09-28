@@ -103,5 +103,21 @@
       }
     ],
     "ReturnTypes": []
+  },
+  {
+    "ContainingType": "SportoloDolgozat.Controllers.EredmenyController",
+    "Method": "GetSportoloByName",
+    "RelativePath": "api/Eredmeny/BySportoloName",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "name",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
   }
 ]

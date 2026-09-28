@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using MySqlConnector;
 using SportoloDolgozat.Models;
 using SportoloDolgozat.Models.DTOs;
+using System.Data;
 
 namespace SportoloDolgozat.Controllers
 {
@@ -186,6 +187,47 @@ namespace SportoloDolgozat.Controllers
             else
             {
                 data = new { message = "Sikertelen lekérdezés | Nincs ilyen ID-val rendelkező sportoló", result = "" };
+            }
+
+
+            connection.Close();
+
+            return data;
+        }
+
+        [HttpGet("BySportoloName")]
+        public object GetSportoloByName(string name)
+        {
+            var connection = new MySqlConnection(ConnectionString);
+
+            connection.Open();
+
+            string sql = @"SELECT `name`,eredmeny.Competition, eredmeny.Description FROM `sportolo` INNER JOIN eredmeny ON sportolo.id = eredmeny.Id WHERE `name` = @name";
+
+
+            var cmd = new MySqlCommand(sql, connection);
+
+            cmd.Parameters.AddWithValue("@name", name);
+
+            var datareader = cmd.ExecuteReader();
+
+            object? data = null;
+            if (datareader.Read() == true)
+            {
+
+                var sportoloData = new 
+                {
+                    Name = datareader.GetString("name"),
+                    Competition = datareader.GetString("competition"),
+                    Description = datareader.GetString("description"),
+
+                };
+
+                data = new { message = "Sikeres lekérdezés", result = sportoloData };
+            }
+            else
+            {
+                data = new { message = "Sikertelen lekérdezés | Nincs ilyen névvel rendelkező sportoló", result = "" };
             }
 
 
