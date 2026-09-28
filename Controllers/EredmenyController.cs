@@ -30,8 +30,8 @@ namespace SportoloDolgozat.Controllers
                 var eredmeny = new Eredmeny
                 {
                     Id = data.GetInt32("id"),
-                    Competition = data.GetString("competetion"),
-                    Description = data.GetString("descrtiption"),
+                    Competition = data.GetString("competition"),
+                    Description = data.GetString("description"),
                     ResultTime = data.GetDateTime("resultTime"),
                     UpdateTime = data.GetDateTime("updateTime"),
                     SportoloId = data.GetInt32("id"),
