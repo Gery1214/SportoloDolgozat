@@ -111,6 +111,31 @@ namespace SportoloDolgozat.Controllers
             return new { message = "Sikeres felvétel", result = addNewSportolo };
         }
 
+        [HttpPut]
+        public object EredmenyPut([FromQuery] int id, EredmenyPut eredmenyPut)
+        {
+
+            var connection = new MySqlConnection(ConnectionString);
+
+            connection.Open();
+
+            var sql = @"UPDATE `eredmeny` SET `Competition`=@Competition,`Description`=@Description,`ResultTime`=@ResultTime,`UpdateTime`=@UpdateTime WHERE `ID` = @id";
+
+            var cmd = new MySqlCommand(@sql, connection);
+
+            cmd.Parameters.AddWithValue("@Competition", eredmenyPut.Competition);
+            cmd.Parameters.AddWithValue("@Description", eredmenyPut.Description);
+            cmd.Parameters.AddWithValue("@ResultTime", DateTime.Now);
+            cmd.Parameters.AddWithValue("@UpdateTime", DateTime.Now);
+            cmd.Parameters.AddWithValue("@id", id);
+
+            cmd.ExecuteNonQuery();
+
+            connection.Close();
+
+            return new { message = "Sikeres frissítés", result = eredmenyPut };
+        }
+
         [HttpDelete]
         public object DeleteSportolo(int id)
         {
@@ -123,7 +148,7 @@ namespace SportoloDolgozat.Controllers
             var cmd = new MySqlCommand(sql, connection);
 
             cmd.Parameters.AddWithValue("@id", id);
-
+            
             cmd.ExecuteNonQuery();
 
             connection.Close();

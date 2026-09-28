@@ -80,6 +80,50 @@
           }
         }
       },
+      "put": {
+        "tags": [
+          "Eredmeny"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "schema": {
+              "pattern": "^-?(?:0|[1-9]\\d*)$",
+              "type": [
+                "integer",
+                "string"
+              ],
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EredmenyPut"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EredmenyPut"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/EredmenyPut"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
       "delete": {
         "tags": [
           "Eredmeny"
@@ -176,6 +220,23 @@
         }
       },
       "EredmenyPost": {
+        "type": "object",
+        "properties": {
+          "competition": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "description": {
+            "type": [
+              "null",
+              "string"
+            ]
+          }
+        }
+      },
+      "EredmenyPut": {
         "type": "object",
         "properties": {
           "competition": {
