@@ -154,7 +154,45 @@ namespace SportoloDolgozat.Controllers
             connection.Close();
 
             return new { message = "Sikeres törlés", result = "" };
-        } 
+        }
+
+        [HttpGet("BySportoloID")]
+        public object GetSportoloDatas(int id)
+        {
+            var connection = new MySqlConnection(ConnectionString);
+
+            connection.Open();
+
+            string sql = @"SELECT `name`,`email` FROM `sportolo` WHERE `id` = @id";
+
+            var cmd = new MySqlCommand(sql, connection);
+
+            cmd.Parameters.AddWithValue("@id", id);
+
+            var datareader = cmd.ExecuteReader();
+
+            object? data = null;
+            if (datareader.Read() == true)
+            {
+
+                var sportoloData = new SportoloIdGet
+                {
+                    Name = datareader.GetString("name"),
+                    Email = datareader.GetString("email"),
+                };
+
+                data = new { message = "Sikeres lekérdezés", result = sportoloData };
+            }
+            else
+            {
+                data = new { message = "Sikertelen lekérdezés | Nincs ilyen ID-val rendelkező sportoló", result = "" };
+            }
+
+
+            connection.Close();
+
+            return data;
+        }
 
     }
 }
