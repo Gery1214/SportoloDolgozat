@@ -43,5 +43,48 @@ namespace SportoloDolgozat.Controllers
 
             return eredmenyek;
         }
+
+        [HttpGet("ByID")]
+        public object GetEredmenyById(int id)
+        {
+            var connection = new MySqlConnection(ConnectionString);
+
+            connection.Open();
+
+            string sql = @"SELECT * FROM `eredmeny` WHERE `Id` = @id";
+
+            var cmd = new MySqlCommand(sql, connection);
+
+            cmd.Parameters.AddWithValue("@id", id);
+
+            var datareader = cmd.ExecuteReader();
+
+            object? data = null;
+            if (datareader.Read() == true)
+            {
+
+                var eredmeny = new Eredmeny
+                {
+                    Id = datareader.GetInt32("id"),
+                    Competition = datareader.GetString("competition"),
+                    Description = datareader.GetString("description"),
+                    ResultTime = datareader.GetDateTime("resultTime"),
+                    UpdateTime = datareader.GetDateTime("updateTime"),
+                    SportoloId = datareader.GetInt32("id"),
+                };
+
+                data = new { message = "Sikeres lekérdezés", result = eredmeny };
+            }
+            else
+            {
+                data = new { message = "Sikertelen lekérdezés | Nincs ilyen ID-val rendelkező sportoló", result = "" };
+            }
+
+
+            connection.Close();
+
+            return data;
+
+        }
     }
 }
