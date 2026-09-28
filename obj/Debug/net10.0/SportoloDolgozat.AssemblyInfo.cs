@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("SportoloDolgozat")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+65a5bf99fb203145b103effeeb4878e68efcb2a9")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+45c1a7677499891cce52137db88fc91454391e73")]
 [assembly: System.Reflection.AssemblyProductAttribute("SportoloDolgozat")]
 [assembly: System.Reflection.AssemblyTitleAttribute("SportoloDolgozat")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
